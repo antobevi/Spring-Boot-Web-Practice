@@ -1,6 +1,7 @@
 package com.antobevi.springboot.app.SpringProject.controllers;
 
 import com.antobevi.springboot.app.SpringProject.models.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -19,6 +20,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/app") // Ruta base para todos los controladores (http://localhost:8080/app/...)
 public class HomeController {
+    @Value("${text.homecontroller.home.title}")
+    private String homeTitle;
 
     // Cada vez que pongamos en el navegador http://localhost:8080/app/home ejecuta este metodo:
     // Otra anotacion: @GetMapping(value = "/home")
@@ -26,7 +29,7 @@ public class HomeController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home(Model model) { // pasar datos desde el controlador a la vista con Model
         // tambien podemos usar la clase ModelMap, ModelAndView (metodo addObject y setViewName) y Map<String> (metodo put)
-        model.addAttribute("HomeTitle", "Hola Spring Framework con Model!");
+        model.addAttribute("HomeTitle", homeTitle);
 
         return "index"; // plantilla html llamada index que es como la pagina de inicio
     }
