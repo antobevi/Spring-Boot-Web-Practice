@@ -17,8 +17,9 @@ import java.util.List;
 * Un controlador se encarga de manejar las peticiones del usuario,
 * como por ejemplo, mostrar una página, mostrar datos solicitados, etc.
 */
+
 @Controller
-@RequestMapping("/app") // Ruta base para todos los controladores (http://localhost:8080/app/...)
+@RequestMapping("/app/home") // Ruta base para todos los controladores (http://localhost:8080/app/...)
 public class HomeController {
     @Value("${text.homecontroller.home.title}")
     private String homeTitle;
@@ -26,7 +27,7 @@ public class HomeController {
     // Cada vez que pongamos en el navegador http://localhost:8080/app/home ejecuta este metodo:
     // Otra anotacion: @GetMapping(value = "/home")
     // Un metodo puede estar mapeado a mas de una url: value = {"/home", "/", "/index"}
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) { // pasar datos desde el controlador a la vista con Model
         // tambien podemos usar la clase ModelMap, ModelAndView (metodo addObject y setViewName) y Map<String> (metodo put)
         model.addAttribute("HomeTitle", homeTitle);
@@ -35,35 +36,18 @@ public class HomeController {
     }
 
     @GetMapping("/my-profile")
-    public String userProfile(ModelMap modelMap) {
-        User user = new User("Antonella", "Bevilacqua", "antonellabevilacqua@hotmail.com");
-        modelMap.addAttribute("TitleUserProfile",
-                "Perfil del usuario: " + user.getName() + " " + user.getSurname());
-        modelMap.addAttribute("UserProfile", user);
-
-        return "profile";
+    public String getUserProfile() {
+        return "redirect:/app/users/my-profile";
     }
 
-    @RequestMapping("/system-users")
-    public String usersList(ModelMap modelMap) {
-        modelMap.addAttribute("TitleUsersList", "Usuarios del sistema");
-        //modelMap.addAttribute("Users", users);
-
-        return "usersList";
+    @GetMapping("/system-users")
+    public String getSystemUsers() {
+        return "redirect:/app/users/system-users";
     }
 
-    // Cuando a las vistas necesitamos pasarle repetidamente un objeto o una lista de objetos,
-    // podemos abtraer esto mediante la siguiente anotacion, haciendo que esta lista sea comun
-    // a todas las vistas, simplemente llamando por el nombre que indicamos:
-    @ModelAttribute("Users")
-    public List<User> systemUsersToList() {
-        List<User> users = Arrays.asList(
-                new User("Antonella", "Bevilacqua", "antonellabevilacqua@hotmail.com"),
-                new User("Morita", "Bevilacqua", "morita2013@hotmail.com"),
-                new User("Uma", "Bevilacqua", "umita2010@hotmail.com")
-        );
-
-        return users;
+    @GetMapping("/search")
+    public String search() {
+        return "redirect:https://www.google.com.ar"; // Cuando queremos redirigir a una pagina externa
     }
 
 }
