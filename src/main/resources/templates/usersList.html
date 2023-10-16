@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Project</title>
+</head>
+<body>
+    <h1 th:text="${TitleUsersList}"></h1>
+    <div th:if="${Users.isEmpty()}">There are no users registered in the system.</div>
+    <table th:if="${not Users.isEmpty()}">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Apellido</th>
+            <th>E-mail</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="User: ${Users}">
+            <td th:text="${User.name}"></td>
+            <td th:text="${User.surname}"></td>
+            <td th:text="${User.email}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--div th:if="${not Users.isEmpty()}">
+        <ul th:each="User: ${Users}">
+            <li th:text="${User.name}"></li>
+            <li th:text="${User.surname}"></li>
+            <li th:text="${User.email}"></li>
+        </ul>
+    </div>
+</body>
+</html>

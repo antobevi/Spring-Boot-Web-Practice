@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Arrays;
+import java.util.List;
+
 /*
 * Un controlador se encarga de manejar las peticiones del usuario,
 * como por ejemplo, mostrar una página, mostrar datos solicitados, etc.
@@ -22,17 +25,32 @@ public class HomeController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home(Model model) { // pasar datos desde el controlador a la vista con Model
         // tambien podemos usar la clase ModelMap, ModelAndView (metodo addObject y setViewName) y Map<String> (metodo put)
-        model.addAttribute("HomeTitle", "Hola Spring Project!");
+        model.addAttribute("HomeTitle", "Hola Spring Framework con Model!");
+
         return "index"; // plantilla html llamada index que es como la pagina de inicio
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/my-profile")
     public String userProfile(ModelMap modelMap) {
-        User user = new User("Antonella", "Bevilacqua");
+        User user = new User("Antonella", "Bevilacqua", "antonellabevilacqua@hotmail.com");
         modelMap.addAttribute("TitleUserProfile",
                 "Perfil del usuario: " + user.getName() + " " + user.getSurname());
         modelMap.addAttribute("UserProfile", user);
+
         return "profile";
+    }
+
+    @RequestMapping("/system-users")
+    public String usersList(ModelMap modelMap) {
+        List<User> users = Arrays.asList(
+                new User("Antonella", "Bevilacqua", "antonellabevilacqua@hotmail.com"),
+                new User("Morita", "Bevilacqua", "morita2013@hotmail.com"),
+                new User("Uma", "Bevilacqua", "umita2010@hotmail.com")
+        );
+        modelMap.addAttribute("TitleUsersList", "Usuarios del sistema");
+        modelMap.addAttribute("Users", users);
+
+        return "usersList";
     }
 
 }
