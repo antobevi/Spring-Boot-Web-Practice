@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Spring Project</title>
+</head>
+<body>
+<h1>Enviando parámetros mediante una URL y el request HTTP GET</h1>
+<div th:text="${PathToShow}"></div>
+<ul>
+  <li>
+    <a th:href="@{/app/variables/string/} + 'My first Spring Project'">/app/variables/string/My first Spring Project</a>
+  </li>
+  <li>
+    <a th:href="@{/app/variables/string/} + 'My first Spring Project' + '/2023'">/app/variables/string/My first Spring Project/2023</a>
+  </li>
+  <li>
+    <a th:href="@{/app/variables/string/} + ${TextToShow}">/app/variables/string/My first Spring Project/2023</a>
+  </li>
+</ul>
+</body>
+</html>
