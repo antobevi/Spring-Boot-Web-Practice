@@ -37,7 +37,7 @@ public class HomeController {
 
     @GetMapping("/my-profile")
     public String getUserProfile() {
-        return "redirect:/app/users/my-profile";
+        return "forward:/app/users/my-profile"; // A diferencia del redirect, no cambia la URL que se muestra
     }
 
     @GetMapping("/system-users")
