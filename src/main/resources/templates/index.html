@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Spring Project</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}"></link>
 </head>
 <body>
-    <h1 th:text="${HomeTitle}"></h1>
+    <h1 class="titles-red" th:text="${HomeTitle}"></h1>
+    <h2 class="subtitles-blue">Aprendiendo un nuevo framework en Java.</h2>
+    <img th:src="@{/images/spring-boot.png}"></img>
 </body>
 </html>
