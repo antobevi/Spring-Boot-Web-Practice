@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -42,13 +43,8 @@ public class HomeController {
 
     @RequestMapping("/system-users")
     public String usersList(ModelMap modelMap) {
-        List<User> users = Arrays.asList(
-                new User("Antonella", "Bevilacqua", "antonellabevilacqua@hotmail.com"),
-                new User("Morita", "Bevilacqua", "morita2013@hotmail.com"),
-                new User("Uma", "Bevilacqua", "umita2010@hotmail.com")
-        );
         modelMap.addAttribute("TitleUsersList", "Usuarios del sistema");
-        modelMap.addAttribute("Users", users);
+        //modelMap.addAttribute("Users", users);
 
         return "usersList";
     }
@@ -56,7 +52,7 @@ public class HomeController {
     // Cuando a las vistas necesitamos pasarle repetidamente un objeto o una lista de objetos,
     // podemos abtraer esto mediante la siguiente anotacion, haciendo que esta lista sea comun
     // a todas las vistas, simplemente llamando por el nombre que indicamos:
-    //@
+    @ModelAttribute("Users")
     public List<User> systemUsersToList() {
         List<User> users = Arrays.asList(
                 new User("Antonella", "Bevilacqua", "antonellabevilacqua@hotmail.com"),
