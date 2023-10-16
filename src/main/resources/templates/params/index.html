@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Spring Project</title>
+</head>
+<body>
+  <h1>Enviando parámetros mediante una URL y el request HTTP GET</h1>
+  <ul>
+    <li>
+      <a th:href="@{/app/params/string(text='My first Spring Project')}">/app/params/string?text=My first Spring Project</a>
+    </li>
+    <li>
+      <a th:href="@{/app/params/string(text='This is a project to practice')}">/app/params/string?text=This is a project to practice</a>
+    </li>
+    <li>
+      <a th:href="@{/app/params/string/greeting(userName='Antonella', userAge=25)}">/app/params/string/greeting?userName=Antonella&userAge=25</a>
+    </li>
+    <li>
+      <a th:href="@{/app/params/string/various-params(userName='Antonella', userAge=25, text='Bienvenida!')}">/app/params/string/various-params?userName=Antonella&userAge=25&text=Bienvenida!</a>
+    </li>
+  </ul>
+</body>
+</html>
