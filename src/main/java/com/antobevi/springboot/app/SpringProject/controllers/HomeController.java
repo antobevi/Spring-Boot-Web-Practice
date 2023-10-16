@@ -53,4 +53,18 @@ public class HomeController {
         return "usersList";
     }
 
+    // Cuando a las vistas necesitamos pasarle repetidamente un objeto o una lista de objetos,
+    // podemos abtraer esto mediante la siguiente anotacion, haciendo que esta lista sea comun
+    // a todas las vistas, simplemente llamando por el nombre que indicamos:
+    //@
+    public List<User> systemUsersToList() {
+        List<User> users = Arrays.asList(
+                new User("Antonella", "Bevilacqua", "antonellabevilacqua@hotmail.com"),
+                new User("Morita", "Bevilacqua", "morita2013@hotmail.com"),
+                new User("Uma", "Bevilacqua", "umita2010@hotmail.com")
+        );
+
+        return users;
+    }
+
 }
